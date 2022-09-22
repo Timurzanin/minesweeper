@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="css/style.css" />
     <title>Minesweeper!</title>
 </head>
-
 <body onload="init()">
     <ul class="background">
         <li></li>
@@ -21,12 +20,10 @@
         <li></li>
         <li></li>
         <li></li>
-
         <h1>Mine sweeper!</h1>
         <h2>Time :
             <span class="time"></span>
         </h2>
-
         <h2 class="lost">Lives left :<span class="lives"></span></h2>
         <button class="restart" onclick="restartGame()">😀</button>
         <div class="buttons">
@@ -34,20 +31,14 @@
             <button class="btn" onclick="setDifficulty(8,12)">Medium</button>
             <button class="btn" onclick="setDifficulty(12,30)">Hard</button>
         </div>
-
-
-
         <div class="board-container">
-
             <table border="1" cellpadding="10">
                 <tbody class="board"></tbody>
             </table>
         </div>
     </ul>
-
+    
     <script src="js/script.js"></script>
 </body>
-
-</footer>
 
 </html>
