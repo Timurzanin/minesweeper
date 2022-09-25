@@ -1,3 +1,6 @@
+'use strict'
+
+
 const DEFAULT_SMILEY = '😊'
 const DEAD_SMILEY = '🥴'
 const WINNER_SMILEY = '😎'
@@ -100,7 +103,7 @@ function renderBoard(board, selector) {
     elContainer.innerHTML = strHTML
 }
 
-// Shows The board in the developer tools for debugging
+// Shows The board 
 function printBoard(board) {
     var printedBoard = []
     for (var i = 0; i < board.length; i++) {
@@ -131,7 +134,7 @@ function getRandomInt(min, max) {
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
-'use strict'
+
 
 
 function cellClicked(elCell, i, j, event) {
@@ -344,7 +347,6 @@ function getNegsPos(cellI, cellJ, board) {
     for (var i = cellI - 1; i <= cellI + 1; i++) {
         if (i < 0 || i >= board.length) continue
         for (var j = cellJ - 1; j <= cellJ + 1; j++) {
-            // if (i === cellI && j === cellJ) continue
             if (j < 0 || j >= board[i].length) continue
             if (!board[i][j].isShown && !board[i][j].isMarked) {
                 negsPosToShow.push({ i, j })
@@ -372,14 +374,12 @@ function handleHintMode(elHint) {
     if (!gGame.isHintMode && gCurrHintId === null) {
         gCurrHintId = elHint.dataset.hint
         gGame.isHintMode = !gGame.isHintMode
-            // elHint.style.transform = 'rotate(90deg)'
         handleElIndicator('visible', 'yellow', 'HINT MODE: ON')
         return
     }
     if (gGame.isHintMode && gCurrHintId === elHint.dataset.hint) {
         gCurrHintId = null
         gGame.isHintMode = !gGame.isHintMode
-            // elHint.style.transform = 'rotate(0deg)'
         handleElIndicator('hidden', 'red', '')
         return
     }
@@ -529,6 +529,15 @@ function startTimer(startTime) {
     }, 1000)
 }
 
+function getTime(totalSecs) {
+    var hour = Math.floor(totalSecs / 3600).toString()
+    var minute = Math.floor((totalSecs - hour * 3600) / 60).toString()
+    var seconds = (totalSecs - (hour * 3600 + minute * 60)).toString()
+    return `
+  ${hour.padStart(2, '0')}:${minute.padStart(2, '0')}:${seconds.padStart(2, '0')}`
+}
+
+
 function renderBestScore() {
     var highestScore = +localStorage.getItem(`bestScore-board-${gGame.level.SIZE}`)
     if (!highestScore) {
@@ -539,13 +548,6 @@ function renderBestScore() {
     elBestScoreSpan.innerHTML = time
 }
 
-function getTime(totalSecs) {
-    var hour = Math.floor(totalSecs / 3600).toString()
-    var minute = Math.floor((totalSecs - hour * 3600) / 60).toString()
-    var seconds = (totalSecs - (hour * 3600 + minute * 60)).toString()
-    return `
-  ${hour.padStart(2, '0')}:${minute.padStart(2, '0')}:${seconds.padStart(2, '0')}`
-}
 
 function renderHints() {
     var elHints = document.querySelector('.hints')
@@ -561,7 +563,7 @@ function renderSmiley(smiley) {
     elGameController.innerHTML = `<span class="btn smiley" onclick="resetGame()">${smiley}</span>`
 }
 
-
+// dark mode
 
 var checkbox = document.querySelector('input[name=mode]');
 
