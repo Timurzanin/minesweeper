@@ -1,44 +1,90 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minesweeper</title>
     <link rel="stylesheet" href="css/style.css" />
-    <title>Minesweeper!</title>
-</head>
-<body onload="init()">
-    <ul class="background">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <h1>Mine sweeper!</h1>
-        <h2>Time :
-            <span class="time"></span>
-        </h2>
-        <h2 class="lost">Lives left :<span class="lives"></span></h2>
-        <button class="restart" onclick="restartGame()">😀</button>
-        <div class="buttons">
-            <button class="btn" onclick="setDifficulty(4,2)">Easy</button>
-            <button class="btn" onclick="setDifficulty(8,12)">Medium</button>
-            <button class="btn" onclick="setDifficulty(12,30)">Hard</button>
+    <link rel="icon" href="img/favicon.png" />
+    <header class="page-header">
+        <h1>Minesweeper</h1>
+    </header>
+
+    <body onload="initGame()">
+        <div class="container">
+            <div class="area">
+                <ul class="circles">
+                    <li style="color:aqua"></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="main-container">
+                <div class="game-window">
+                    <div class="controls">
+                        <div class="levels">
+                            <label class="btn"><input
+                type="radio"
+                data-level="Beginner"
+                onclick="setGameMode(this)"
+                name="level"
+                checked
+              />Beginner</label
+            >
+
+            <label class="btn"
+              ><input
+                type="radio"
+                data-level="Medium"
+                onclick="setGameMode(this)"
+                name="level"
+              />Medium</label
+            >
+
+            <label class="btn"
+              ><input
+                type="radio"
+                data-level="Expert"
+                onclick="setGameMode(this)"
+                name="level"
+              />Expert</label
+            >
+          </div>
+          <div class="info lives">Lives Left: <span></span></div>
+          <div class="info best-score">Best Score: <span>00:00:00</span></div>
+          <div class="info timer"><span>00:00:00</span></div>
+          <div class="game-controller"></div>
+          <button class="btn" onclick="safeClick()">
+            <span>Safe click: <span></span></span>
+          </button>
+          <div class="hints"></div>
         </div>
-        <div class="board-container">
-            <table border="1" cellpadding="10">
-                <tbody class="board"></tbody>
-            </table>
+        <div class="board-container"></div>
+        <div class="indicator"><span></span></div>
+        <div class="finish-modal">
+          <p></p>
+          <button class="btn" onclick="resetGame()">
+            <span>Play again</span>
+          </button>
         </div>
-    </ul>
-    
-    <script src="js/script.js"></script>
-</body>
+      </div>
+    </div>
+        <h1>Light / Dark Mode</h1>
+         <input class="container_toggle" type="checkbox" id="switch" name="mode">
+          <label class="switch" for="switch">Toggle</label>
+                        </div>
+
+                        <script src="js/script.js"></script>
+    </body>
 
 </html>
